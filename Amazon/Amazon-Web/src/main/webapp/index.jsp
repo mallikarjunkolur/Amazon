@@ -5,5 +5,6 @@ function redirect(){
 </script>
 
 <body onload="redirect()">
+	<h2>HELLO...</h2>
 
 </body>
