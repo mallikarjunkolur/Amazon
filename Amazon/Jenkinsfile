@@ -3,32 +3,30 @@ pipeline {
 
     stages {
 
-        stage('Parallel Jobs') {
-            parallel {
-                stage('Unit Tests') {
-                    steps {
-                        echo "Running unit tests..."
-                    }
-                }
-
-                stage('Static Analysis') {
-                    steps {
-                        echo "Running Sonar..."
-                    }
-                }
-            }
-        }
-
-        stage('Package') {
+        stage('clean') {
             steps {
-                echo "Packaging app..."
+                sh 'mvn clean'
+                    }
+                }
+
+        stage('compile') {
+            steps {
+                sh 'mvn compile'
+                    }
+                }
+         stage('test') {
+            steps {
+                sh 'mvn test'
+            }
+        stage('build') {
+            steps {
+                sh 'mvn clean install'
             }
         }
-    }
 
     post {
         success {
-            echo "Pipeline succeeded!"
+            sh 'scp target/*.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/
         }
         failure {
             echo "Pipeline failed!"
