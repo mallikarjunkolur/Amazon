@@ -28,7 +28,7 @@ pipeline {
 
     post {
         success {
-            sh 'scp -o StrictHostKeyChecking=no Amazon/Amazon-Web/target/Amazon.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/'
+            sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/job3/Amazon/Amazon-Web/target/Amazon.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/'
         }
         failure {
             echo "build failed"
