@@ -5,23 +5,23 @@ pipeline {
 
         stage('clean') {
             steps {
-                sh 'mvn clean'
+                sh 'cd Amazon && mvn clean'
                     }
                 }
 
         stage('compile') {
             steps {
-                sh 'mvn compile'
+                sh 'cd Amazon && mvn compile'
                     }
                 }
          stage('test') {
             steps {
-                sh 'mvn test'
+                sh 'cd Amazon && mvn test'
             }
          }
         stage('build') {
             steps {
-                sh 'mvn clean install'
+                sh 'cd Amazon && mvn clean install'
             }
         }
     }
