@@ -18,6 +18,7 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
+         }
         stage('build') {
             steps {
                 sh 'mvn clean install'
@@ -29,12 +30,8 @@ pipeline {
             sh 'scp target/*.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/
         }
         failure {
-            echo "Pipeline failed!"
-        }
-        always {
-            echo "Cleaning workspace..."
-            cleanWs()
+            echo "build failed"
         }
     }
+    }
 }
-// Added feature 2
