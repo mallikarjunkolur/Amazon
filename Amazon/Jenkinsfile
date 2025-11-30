@@ -27,7 +27,7 @@ pipeline {
 
     post {
         success {
-            sh 'scp target/*.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/
+            sh 'scp target/*.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/'
         }
         failure {
             echo "build failed"
