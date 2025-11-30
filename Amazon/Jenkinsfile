@@ -1,1 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Parallel Jobs') {
+            parallel {
+                stage('Unit Tests') {
+                    steps {
+                        echo "Running unit tests..."
+                    }
+                }
+
+                stage('Static Analysis') {
+                    steps {
+                        echo "Running Sonar..."
+                    }
+                }
+            }
+        }
+
+        stage('Package') {
+            steps {
+                echo "Packaging app..."
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline succeeded!"
+        }
+        failure {
+            echo "Pipeline failed!"
+        }
+        always {
+            echo "Cleaning workspace..."
+            cleanWs()
+        }
+    }
+}
 // Added feature 2
