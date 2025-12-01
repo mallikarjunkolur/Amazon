@@ -1,1 +1,37 @@
-// Added feature 2
+pipeline {
+    agent any
+
+    stages {
+
+        stage('clean') {
+            steps {
+                sh 'cd Amazon && mvn clean'
+                    }
+                }
+
+        stage('compile') {
+            steps {
+                sh 'cd Amazon && mvn compile'
+                    }
+                }
+         stage('test') {
+            steps {
+                sh 'cd Amazon && mvn test'
+            }
+         }
+        stage('build') {
+            steps {
+                sh 'cd Amazon && mvn clean install'
+            }
+        }
+    }
+
+    post {
+        success {
+            sh 'scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/job3/Amazon/Amazon-Web/target/Amazon.war mgk@192.168.18.129:/home/mgk/linux/tomcat/webapps/'
+        }
+        failure {
+            echo "build failed"
+        }
+    }
+}
