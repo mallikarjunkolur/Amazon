@@ -34,11 +34,12 @@
         <property name="pinCode" value="577500"></property>
     </bean>
 
-    <bean id="address1" class="org.example.Address">
+   <!-- <bean id="address1" class="org.example.Address">
         <property name="streetName" value="CLk"></property>
         <property name="area" value="SN arcade"></property>
         <property name="pinCode" value="577522"></property>
-    </bean>
+    </bean>-->
+
 
 
 
